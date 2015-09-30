@@ -13,14 +13,14 @@
 (def user-time (r/atom 12))
 
 
-(def es-url  "http://localhost:9200/sequence/_search?q=") 
+(def es-url  "http://localhost:9200/subtitles/_search?q=") 
 
 (defn query [q] ;; had CORS problems without with-credentials? set to false
   (go (let [res(<! (http/get (str es-url q) {:with-credentials? false}))]
     (reset! response 
       (-> res
         (get-in [:body :hits :hits]) 
-        (->> (map #(get-in % [:_source :gb_format])))))))) 
+        (->> (map #(get-in % [:_source :text]))(str/join "\n") ) ))))) 
 
 (defn vid-component []
   [:div
@@ -47,8 +47,8 @@
 
 ;;hiccup is in order of: [tag attributes contents]
 (defn like-component []
-  [:div
-   
+  ;[:div
+   [:pre  @response
     [:h1 "rather, a change: " (:likes @app-state)]
        [:div [:a {:href "#"
                   :on-click #(swap! app-state update-in [:likes] inc)}
@@ -67,7 +67,7 @@
             :type "text"}]]
    
     ;[[:pre @response] {} [vid-component {} control-component] ]])
-    [[:pre @response]  {} vid-component ] {} [control-component]] )
+    [[:pre {} @response]  {} vid-component ] {} [control-component]] )
 
 
 
