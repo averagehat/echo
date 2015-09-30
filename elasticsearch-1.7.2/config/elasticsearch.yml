@@ -1,4 +1,4 @@
-http.cors.allow-origin: *
+http.cors.allow-origin: "*"
 http.cors.enabled: true
 
 ##################### Elasticsearch Configuration Example #####################
