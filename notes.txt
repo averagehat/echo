@@ -1,0 +1,8 @@
+clojure phonemic wrapper
+
+ words -> syllables -> UTAU voices 
+
+"who ya gonna call, a cop?"
+
+
+fix solr so it returns text field?
