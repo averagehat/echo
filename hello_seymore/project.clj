@@ -7,17 +7,24 @@
                  [reagent "0.5.1"]]
   :plugins [[lein-figwheel "0.4.0"]]
   :clean-targets [:target-path "out"]
-  :profiles {:dev {:dependencies [[com.cemerick/piggieback "0.2.1"]
-                                                                  [org.clojure/tools.nrepl "0.2.10"]]
-                                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
   :cljsbuild {
     :builds [{:id "dev"
               :source-paths ["src"]
-              ;:figwheel true
-              :figwheel {
-                          :nrepl-port 7888
-                         }
-
+              :figwheel true
               :compiler {:main "hello-seymore.core"} 
              }]
    })
+
+
+;                                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
+;  :cljsbuild {
+;    :builds [{:id "dev"
+;              :source-paths ["src"]
+;              ;:figwheel true
+;              :figwheel {
+;                          :nrepl-port 7888
+;                         }
+;
+;              :compiler {:main "hello-seymore.core"} 
+;             }]
+;   })
